@@ -23,7 +23,7 @@ class TransactionCommission extends Transaction
         if ($this->currency == 'EUR' || $rate == 0) {
             $amount = $this->amount;
         } else if ($this->currency != 'EUR' or $rate > 0) {
-                $amount = $this->amount / $rate;
+            $amount = $this->amount / $rate;
         }
 
         return round($amount * $commission, 2);

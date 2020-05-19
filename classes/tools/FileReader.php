@@ -2,6 +2,8 @@
 
 namespace Classes\Tools;
 
+use Exception;
+
 class FileReader
 {
     public $content = '';
@@ -9,7 +11,10 @@ class FileReader
     public function read($file)
     {
         $data = file_get_contents($file);
-        $this->content = $data ? $data : false;
+        if (!$data) {
+            throw new Exception('File not found or something went wrong');
+        }
+        $this->content = $data;
     }
 
     public function getJsonDecoded()

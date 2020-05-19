@@ -2,6 +2,8 @@
 
 namespace Classes\Tools;
 
+use Exception;
+
 class ApiReader
 {
     public $content = '';
@@ -9,7 +11,10 @@ class ApiReader
     public function get($url)
     {
         $data = file_get_contents($url);
-        $this->content = $data ? $data : false;
+        if (!$data) {
+            throw new Exception('Api isn\'t responding or something went wrong');
+        }
+        $this->content = $data;
     }
 
     public function getJsonDecoded($assoc = false)
